@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  	<bean id="server" class="service.Service"> </bean>
+	
+	<bean id="cardService" class="service.CardService"></bean><!--这里的id相当于类的别名其实就是注解  -->
+	
+	<bean id="userService" class="service.UserService"></bean>
+	
+	<bean id="user" class="control.userControl">
+		<property  name="service" ref="server"></property>
+		<property  name="userservice" ref="userService"></property>
+		<property  name="cardservice" ref="cardService"></property>
+	 </bean>
+	 
+	 <bean id="card" class="control.cardControl">
+	 	<property  name="service" ref="server"></property>
+	 	<property  name="cardservice" ref="cardService"></property>	<!--这里的配置需要注意，name就是里面的对象,但是ref是之前的注解别名,这里需要格外的注意,变量需要有set方法  -->
+	 </bean>
+	 
+</beans>
+
